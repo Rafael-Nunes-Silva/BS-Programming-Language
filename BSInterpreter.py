@@ -1,14 +1,13 @@
 class BSInterpreter:
-    __codeTree = []
-    __words = []
-    __currentWordIndex = 0
-
-    __variables = []
-
-    __treeFilePath = ""
-
-    def __init__(self, sourceFilePath):
+    def __init__(self, sourceFilePath, inputs = None, outputToString = False):
         self.__treeFilePath = sourceFilePath[:-2] + "json"
+
+        self.__inputs = inputs
+        self.__outputs = []
+        self.__outputToString = outputToString
+
+        self.__currentWordIndex = 0
+        self.__variables = []
 
         sourceCode = ""
         with open(sourceFilePath, "r") as sourceFile:
@@ -204,7 +203,7 @@ class BSInterpreter:
         with open(self.__treeFilePath if jsonPath == None else jsonPath, "w") as jsonFile:
             jsonFile.write(json.dumps({ "program": self.__codeTree }))
 
-    def __AssignVar(self, name, value):        
+    def __AssignVar(self, name, value):
         val = None
         try: val = float(value)
         except: val = value
@@ -278,17 +277,24 @@ class BSInterpreter:
         elif branch["type"] == "or":
             return branch["left"] or self.__RunBranch(branch["right"])
         elif branch["type"] == "output":
-            print(self.__RunBranch(branch["value"]))
+            output = self.__RunBranch(branch["value"])
+            if self.__outputToString:
+                self.__outputs.append(str(output))
+            else: print(output)
         elif branch["type"] == "input":
-            inp = input()
+            inp = self.__inputs.pop(0) if self.__inputs else input()
+            
             val = None
             try: val = float(inp)
             except: val = inp
             return val
-        
+
     def Run(self):
         try:
             for branch in self.__codeTree:
                 self.__RunBranch(branch)
         except Exception as e:
             print(e)
+
+    def GetOutputString(self):
+        return "\n".join(self.__outputs)

@@ -7,6 +7,6 @@ print("***************************")
 while True:
     path = input("Caminho do arquivo .BS: ")
     interpreter = BSInterpreter(path)
-    # interpreter.SaveToJson()
+    interpreter.SaveToJson()
     print(f"{path}:")
     interpreter.Run()
