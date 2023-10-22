@@ -11,7 +11,9 @@ class BSInterpreter:
 
         sourceCode = ""
         with open(sourceFilePath, "r") as sourceFile:
-            sourceCode = sourceFile.readline()[:-1]
+            sourceCode = sourceFile.readline()
+        if sourceCode[-1] == " ":
+            sourceCode = sourceCode[:-1]
         self.__words = sourceCode.split(" ")
         self.__codeTree = self.__BuildCodeTree()
 
