@@ -1,6 +1,6 @@
 class BSInterpreter:
     def __init__(self, sourceFilePath = None, sourceCode = "", inputs = None, outputToString = False):
-        self.__treeFilePath = sourceFilePath[:-2] + "json"
+        self.__treeFilePath = sourceFilePath[:-2] + "json" if sourceFilePath != None else "./CodeTree.json"
 
         self.__inputs = inputs
         self.__outputs = []
