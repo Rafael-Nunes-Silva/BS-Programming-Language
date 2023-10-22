@@ -1,5 +1,5 @@
 class BSInterpreter:
-    def __init__(self, sourceFilePath, inputs = None, outputToString = False):
+    def __init__(self, sourceFilePath = None, sourceCode = "", inputs = None, outputToString = False):
         self.__treeFilePath = sourceFilePath[:-2] + "json"
 
         self.__inputs = inputs
@@ -9,11 +9,13 @@ class BSInterpreter:
         self.__currentWordIndex = 0
         self.__variables = []
 
-        sourceCode = ""
-        with open(sourceFilePath, "r") as sourceFile:
-            sourceCode = sourceFile.readline()
+        if sourceFilePath != None:
+            with open(sourceFilePath, "r") as sourceFile:
+                sourceCode = sourceFile.readline()
+
         if sourceCode[-1] == " ":
             sourceCode = sourceCode[:-1]
+
         self.__words = sourceCode.split(" ")
         self.__codeTree = self.__BuildCodeTree()
 
