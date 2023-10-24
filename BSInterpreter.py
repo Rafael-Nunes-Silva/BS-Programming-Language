@@ -6,7 +6,7 @@ class BSInterpreter:
         self.__outputs = []
         self.__outputToString = outputToString
 
-        self.__currentWordIndex = 0
+        self.__currentWordIndex = -1
         self.__variables = []
 
         if sourceFilePath != None:
