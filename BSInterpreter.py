@@ -271,7 +271,8 @@ class BSInterpreter:
             return val
         elif branch["type"] == "if":
             if self.__RunBranch(branch["condition"]):
-                self.__RunBranch(branch["body"])
+                for b in branch["body"]:
+                    self.__RunBranch(b)
         elif branch["type"] == "loop":
             while self.__RunBranch(branch["condition"]):
                 for b in branch["body"]:
