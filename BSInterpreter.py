@@ -278,9 +278,9 @@ class BSInterpreter:
                 for b in branch["body"]:
                     self.__RunBranch(b)
         elif branch["type"] == "and":
-            return branch["left"] and self.__RunBranch(branch["right"])
+            return self.__RunBranch(branch["left"]) and self.__RunBranch(branch["right"])
         elif branch["type"] == "or":
-            return branch["left"] or self.__RunBranch(branch["right"])
+            return self.__RunBranch(branch["left"]) or self.__RunBranch(branch["right"])
         elif branch["type"] == "output":
             output = self.__RunBranch(branch["value"])
             if self.__outputToString:
@@ -301,5 +301,5 @@ class BSInterpreter:
         except Exception as e:
             print(e)
 
-    def GetOutputString(self):
-        return "\n".join(self.__outputs)
+    def GetOutput(self):
+        return self.__outputs
