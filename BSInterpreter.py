@@ -21,7 +21,7 @@ class BSInterpreter:
 
     def __BuildCodeBranch(self):
         self.__currentWordIndex += 1
-        lastWord = self.__words[self.__currentWordIndex - 1]
+        lastWord = self.__words[0 if self.__currentWordIndex <= 0 else self.__currentWordIndex - 1]
 
         while self.__currentWordIndex < len(self.__words):
             if self.__words[self.__currentWordIndex] == ".":# End of a statement
