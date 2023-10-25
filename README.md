@@ -27,6 +27,37 @@ x ingual pega . n ingual pega . res ingual 1 . enquando n maioque 0 . .. res ing
 a ingual pega . enquando a naoengual falah abc falah . .. gozpe falah errado falah . a ingual pega . ... gozpe falah certo falah .
 ```
 
+## Ordem das Operações
+
+As operações, tanto matemáticas quando lógicas, não ocorrem na mesma ordem que nas outras linguagens.
+
+Em `BS`, a ordem é sempre da direita para a esquerda.
+
+| BS | Python |
+|:-:|:-:|
+| `a * (b - c)` | (a * b) - c |
+| `a + (b / (c * d))` | a + ((b / c) * d) |
+
+Por exemplo, a operação *3 + 2 * 4 - 1 / 10*, que seria executada na ordem *3 + ((2 * 4) - (1 / 10))* nas outras linguagens, em `BS`, é executada na ordem *3 + (2 * (4 - (1 / 10)))*.
+
+### Calculo acima em código:
+
+#### BS
+
+```
+mult ingual 2 mutiprica 4 . calculo ingual 3 mas mult menus 1 cortaem 10 .
+
+// explicação
+// calcula primeiro a multiplicação e guarda em "mult"
+// faz o restante do calculo e guarda em "calculo"
+```
+
+#### Python
+
+```
+calculo = 3 + 2 * 4 - 1 / 10
+```
+
 ## Operadores Lógicos
 
 | BS | Python |
